@@ -1,21 +1,19 @@
 package fr.varchar.bot;
 
+import fr.varchar.bot.listeners.JoinListener;
 import fr.varchar.bot.util.Utils;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 
 import javax.security.auth.login.LoginException;
 
-public class Bot {
-
-    public Bot()
+public class Bot
+{
+    public Bot() throws LoginException
     {
         final JDABuilder jdaBuilder = JDABuilder.createDefault(Utils.getToken());
-        try {
-            jdaBuilder.build();
-            System.out.println("builded");
-        } catch (LoginException e) {
-            e.printStackTrace();
-        }
+        jdaBuilder.enableIntents(GatewayIntent.GUILD_MEMBERS);
+        jdaBuilder.addEventListeners(new JoinListener());
+        jdaBuilder.build();
     }
-
 }
