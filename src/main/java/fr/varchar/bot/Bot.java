@@ -1,5 +1,6 @@
 package fr.varchar.bot;
 
+import fr.varchar.bot.commands.CommandsListener;
 import fr.varchar.bot.listeners.JoinListener;
 import fr.varchar.bot.util.Utils;
 import net.dv8tion.jda.api.JDABuilder;
@@ -13,7 +14,7 @@ public class Bot
     {
         final JDABuilder jdaBuilder = JDABuilder.createDefault(Utils.getToken());
         jdaBuilder.enableIntents(GatewayIntent.GUILD_MEMBERS);
-        jdaBuilder.addEventListeners(new JoinListener());
+        jdaBuilder.addEventListeners(new JoinListener(), new CommandsListener());
         jdaBuilder.build();
     }
 }

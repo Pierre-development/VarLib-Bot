@@ -14,5 +14,19 @@ repositories {
 }
 
 dependencies {
-    compile 'net.dv8tion:JDA:4.2.1_256'
+    compile ('net.dv8tion:JDA:4.2.1_256') {
+        exclude module: 'opus-java'
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'fr.varchar.bot.Main'
+        attributes 'Built-By': 'Varchar'
+    }
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
 }
