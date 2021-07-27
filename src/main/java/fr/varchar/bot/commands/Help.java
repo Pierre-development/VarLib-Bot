@@ -8,8 +8,8 @@ import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Help extends Command
-{
+public class Help extends Command {
+
 
     public Help(String name, String description)
     {
@@ -17,13 +17,11 @@ public class Help extends Command
     }
 
     @Override
-    public void execution(MessageReceivedEvent event)
-    {
+    public void execution(MessageReceivedEvent event) {
         final EmbedBuilder embedBuilder = new EmbedBuilder();
-        embedBuilder.setTitle("liste des commandes disponibles");
+        embedBuilder.setTitle("Liste des commandes disponibles :");
         embedBuilder.setColor(Color.GREEN);
-        for (Command command : CommandsListener.getCommandList())
-        {
+        for (Command command : CommandsListener.getCommandList()) {
             embedBuilder.addField(command.getName(), command.getDescription(), false);
         }
         embedBuilder.setFooter("VarLib | " + new SimpleDateFormat("'le' dd/MM/yyyy '\u00E0' kk:mm:ss").format(new Date()));

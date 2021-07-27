@@ -1,6 +1,8 @@
 package fr.varchar.bot.listeners;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
@@ -9,13 +11,12 @@ import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class JoinListener extends ListenerAdapter
-{
+public class JoinListener extends ListenerAdapter {
+
     @Override
-    public void onGuildMemberJoin(@NotNull GuildMemberJoinEvent event)
-    {
+    public void onGuildMemberJoin(@NotNull GuildMemberJoinEvent event) {
         event.getGuild().addRoleToMember(event.getMember().getId(), event.getGuild().getRoleById("846385800253538336")).queue();
-        if(!event.getUser().isBot()) {
+        if (!event.getUser().isBot()) {
             final EmbedBuilder embedBuilder = new EmbedBuilder();
             embedBuilder.setThumbnail(event.getUser().getAvatarUrl() == null ? event.getUser().getDefaultAvatarUrl() : event.getUser().getAvatarUrl());
             embedBuilder.setTitle("Bienvenue \u00E0 " + event.getUser().getName());

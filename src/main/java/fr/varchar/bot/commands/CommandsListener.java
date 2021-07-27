@@ -9,26 +9,22 @@ import java.util.List;
 
 import static fr.varchar.bot.util.Constants.PREFIX;
 
-public class CommandsListener extends ListenerAdapter
-{
+public class CommandsListener extends ListenerAdapter {
     private static final List<Command> COMMANDS = new ArrayList<>();
 
-    public CommandsListener()
-    {
+    public CommandsListener(){
         COMMANDS.add(new Help("help", "Affiche les commandes disponibles"));
-        COMMANDS.add(new Libs("libs", "Affiche la librairie du le tuto"));
+        COMMANDS.add(new Libs("libs", "Afficher les informations sur VarLib"));
+        COMMANDS.add(new Clear("clear", "Supprimer des messages"));
     }
 
     @Override
-    public void onMessageReceived(@NotNull MessageReceivedEvent event)
-    {
+    public void onMessageReceived(@NotNull MessageReceivedEvent event){
+
         super.onMessageReceived(event);
-        if (event.getMessage().getContentRaw().startsWith(PREFIX))
-        {
-            for (Command command : COMMANDS)
-            {
-                if (event.getMessage().getContentRaw().startsWith(PREFIX + command.getName()))
-                {
+        if (event.getMessage().getContentRaw().startsWith(PREFIX)){
+            for (Command command : COMMANDS){
+                if (event.getMessage().getContentRaw().startsWith(PREFIX + command.getName())){
                     command.execution(event);
                 }
             }
